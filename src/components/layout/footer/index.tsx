@@ -81,6 +81,7 @@ const Footer = () => {
                   />
                   <button
                     type="submit"
+                    aria-label="Subscribe"
                     disabled={isSubmitting}
                     className="absolute top-1/2 cursor-pointer   -translate-y-1/2 end-1 bg-[#4B2616] h-[90%] py-2.5 px-6 rounded-md text-white flex items-center"
                   >
@@ -109,13 +110,25 @@ const Footer = () => {
           <div className="flex gap-7 items-center">
             <span className="text-white">{t("contacts")}: </span>
             <div className="flex gap-5 items-center">
-              <Link href={settings?.twitter || "https://twitter.com"}>
+              <Link
+                target="_blank"
+                aria-label="Twitter"
+                href={settings?.twitter || "https://twitter.com"}
+              >
                 <TwitterIcon />
               </Link>
-              <Link href={settings?.facebook || "https://facebook.com"}>
+              <Link
+                target="_blank"
+                aria-label="Facebook"
+                href={settings?.facebook || "https://facebook.com"}
+              >
                 <FacebookIcon />
               </Link>
-              <Link href={settings?.google || "https://google.com"}>
+              <Link
+                target="_blank"
+                aria-label="Google"
+                href={settings?.google || "https://google.com"}
+              >
                 <GoogleIcon />
               </Link>
             </div>

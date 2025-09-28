@@ -183,7 +183,7 @@ const Header = () => {
               <LanguageSwitcher />
               <Link href="/book-appointment" legacyBehavior>
                 <a>
-                  <button className="bg-transparent px-4 py-2 min-w-[120px] font-inherit border border-main border-white rounded">
+                  <button aria-label="book-appointment" className="bg-transparent px-4 py-2 min-w-[120px] font-inherit border border-main border-white rounded">
                     {t("book-appointment")}
                   </button>
                 </a>
@@ -192,6 +192,7 @@ const Header = () => {
 
             <button
               className="xl:hidden text-2xl cursor-pointer"
+              aria-label="menu"
               onClick={() => setOpen(true)}
             >
               ☰
@@ -244,6 +245,7 @@ const Header = () => {
                 <div className="relative flex items-center justify-start mt-[30px]">
                   <button
                     onClick={() => setSearchActive((prev) => !prev)}
+                    aria-label="search"
                     className="absolute z-50 p-2 rounded-full transition cursor-pointer inset-x-3 w-fit"
                   >
                     <SearchIcon />
@@ -274,6 +276,7 @@ const Header = () => {
                         ? "opacity-100 "
                         : "opacity-0 overflow-hidden"
                     } ${dir === "rtl" ? "" : "rotate-180"}`}
+                    aria-label="search"
                     onClick={() => {
                       router.push(
                         `/services?query=${encodeURIComponent(searchValue)}`

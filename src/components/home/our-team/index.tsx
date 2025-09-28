@@ -85,15 +85,24 @@ const OurTeamSection = () => {
                     </p>
                     <div className="flex flex-row items-center justify-center gap-3">
                       <Link
+                        aria-label="whatsapp"
                         href={`https://wa.me/${member?.whatsapp}`}
                         target="_blank"
                       >
                         <WhatsappIcon />
                       </Link>
-                      <Link href={`tel:${member?.phone}`} target="_blank">
+                      <Link
+                        aria-label="call"
+                        href={`tel:${member?.phone}`}
+                        target="_blank"
+                      >
                         <CallIcon />
                       </Link>
-                      <Link href={`mailto:${member?.email}`} target="_blank">
+                      <Link
+                        aria-label="email"
+                        href={`mailto:${member?.email}`}
+                        target="_blank"
+                      >
                         <MailIcon />
                       </Link>
                     </div>
