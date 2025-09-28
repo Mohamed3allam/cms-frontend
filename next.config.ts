@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import nextI18NextConfig from "./next-i18next.config";
 
 const nextConfig: NextConfig = {
+  /* config options here */
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -28,7 +29,7 @@ const nextConfig: NextConfig = {
       {
         hostname: "randomuser.me",
         protocol: "https",
-        pathname: "/**",
+        pathname: "/**", 
       },
       {
         hostname: "excellent-animal-4c17327267.strapiapp.com",
@@ -39,13 +40,10 @@ const nextConfig: NextConfig = {
         hostname: "excellent-animal-4c17327267.media.strapiapp.com",
         protocol: "https",
         pathname: "/**",
-      },
+      }
     ],
   },
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en", "ar"],
-  },
+  i18n: nextI18NextConfig.i18n,
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(
       (rule: any) => rule.test && rule.test.test(".svg")

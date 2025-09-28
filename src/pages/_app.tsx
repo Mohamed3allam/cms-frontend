@@ -8,6 +8,7 @@ import { appWithTranslation } from "next-i18next";
 import { wrapper } from "@/store";
 import TopBarProgress from "react-topbar-progress-indicator";
 import Loading from "@/components/shared/loading";
+import nextI18NextConfig from "../../next-i18next.config";
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -85,4 +86,4 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default wrapper.withRedux(appWithTranslation(App));
+export default wrapper.withRedux(appWithTranslation(App, nextI18NextConfig));

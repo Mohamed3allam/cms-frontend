@@ -61,7 +61,10 @@ export default function Home() {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: [], fallback: "blocking" };
+  const locales = ["en", "ar"];
+  const paths = locales.flatMap((locale) => [{ params: {}, locale }]);
+
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
