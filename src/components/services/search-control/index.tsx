@@ -73,6 +73,7 @@ export default function SearchPage() {
       <div className="flex lg:flex-col gap-3 p-4 sm:p-6 bg-[#FAFAFA] h-fit mt-4 rounded-lg">
         <button
           onClick={() => changeTab("services")}
+          aria-selected={activeTab === "services"}
           className={`px-3 py-2 text-left text-[#4B2615] text-base sm:text-lg cursor-pointer ${
             activeTab === "services" ? "font-bold text-brown-700" : "opacity-60"
           }`}
@@ -81,6 +82,7 @@ export default function SearchPage() {
         </button>
         <button
           onClick={() => changeTab("team")}
+          aria-selected={activeTab === "team"}
           className={`px-3 py-2 text-left text-[#4B2615] text-base sm:text-lg cursor-pointer ${
             activeTab === "team" ? "font-bold text-brown-700" : "opacity-60"
           }`}
@@ -91,6 +93,7 @@ export default function SearchPage() {
       <div className="flex-1">
         <button
           onClick={() => router.back()}
+          aria-label="back"
           className="flex items-center gap-2 cursor-pointer mb-6 w-fit"
         >
           <BackIcon className={`${dir === "rtl" ? "rotate-180" : ""}`} />
@@ -114,6 +117,7 @@ export default function SearchPage() {
                 </p>
                 <Link
                   href={`/services/${service?.slug}`}
+                  aria-label="read more"
                   className="text-sm text-[#4B2615] underline"
                 >
                   {t("readMore")}
