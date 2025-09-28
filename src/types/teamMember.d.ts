@@ -1,7 +1,7 @@
 export interface TeamMember {
   id: number;
   documentId: string;
-  avatar?: string;
+  avatar: { url: string } | string;
   name?: string;
   role?: string;
   bio?: string;

@@ -17,11 +17,11 @@ export const fetchHeroes = createAsyncThunk(
     const strapiImageUrl =
       process.env.NEXT_PUBLIC_MAIN_URL || "http://localhost:1337";
 
-    const processedData = data.data.map((item: any) => {
-      if (item.image?.url) {
+    const processedData = data.data.map((item: HeroSlide) => {
+      if (typeof item.image !== "string" && item.image?.url) {
         item.image = strapiImageUrl + item.image.url;
       }
-      if (item.background?.url) {
+      if (typeof item.background !== "string" && item.background?.url) {
         item.background = strapiImageUrl + item.background.url;
       }
       return item;

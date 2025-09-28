@@ -69,13 +69,15 @@ const Header = () => {
         <div className="w-full">
           <div className="sm:px-20 lg:px-10 flex justify-between items-center gap-2 w-full h-full">
             <div className="h-[60px] w-[140px] flex items-center justify-center">
-              <Image
-                priority
-                width={140}
-                height={60}
-                src={settings?.logo || logoImg}
-                alt="Logo"
-              />
+              {typeof settings?.logo === "string" && (
+                <Image
+                  priority
+                  width={140}
+                  height={60}
+                  src={settings?.logo || logoImg}
+                  alt="Logo"
+                />
+              )}
             </div>
 
             <nav className="hidden xl:flex items-center gap-8">
@@ -210,13 +212,15 @@ const Header = () => {
                 </button>
 
                 <div className="mb-15">
-                  <Image
-                    priority
-                    width={140}
-                    height={60}
-                    src={settings?.logo || logoImg}
-                    alt="Logo"
-                  />
+                  {typeof settings?.logo === "string" && (
+                    <Image
+                      priority
+                      width={140}
+                      height={60}
+                      src={settings?.logo || logoImg}
+                      alt="Logo"
+                    />
+                  )}
                 </div>
 
                 <nav className="flex flex-col gap-4">

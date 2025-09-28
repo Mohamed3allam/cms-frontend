@@ -1,19 +1,20 @@
 import { TeamMember } from "./teamMember";
 
+export type RichTextChildren = {
+  type: string;
+  text: string;
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
+  strikethrough?: boolean;
+  code?: boolean;
+};
 export type RichTextBlock = {
   type: string;
   align?: string;
   level?: number;
   style?: string;
-  children: Array<{
-    type: string;
-    text: string;
-    bold?: boolean;
-    italic?: boolean;
-    underline?: boolean;
-    strikethrough?: boolean;
-    code?: boolean;
-  }>;
+  children: RichTextChildren[];
 };
 
 export interface Service {

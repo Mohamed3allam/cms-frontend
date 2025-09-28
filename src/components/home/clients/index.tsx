@@ -52,15 +52,17 @@ const OurClientsSection = () => {
                 <SwiperSlide key={client?.id}>
                   <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10">
                     <div className="w-full lg:w-3/12 h-[370px] overflow-hidden bg-white">
-                      <Image
-                        width={600}
-                        height={600}
-                        className="w-full h-full object-contain"
-                        src={client?.logo}
-                        alt={client?.company}
-                        priority
-                        unoptimized
-                      />
+                      {typeof client?.logo === "string" && (
+                        <Image
+                          width={600}
+                          height={600}
+                          className="w-full h-full object-contain"
+                          src={client?.logo}
+                          alt={client?.company}
+                          priority
+                          unoptimized
+                        />
+                      )}
                     </div>
                     <div className="flex flex-col justify-between gap-3 w-full lg:w-8/12 min-h-80">
                       <p className="text-[22px] text-white opacity-[60%]">

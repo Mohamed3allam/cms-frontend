@@ -1,12 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "@/lib/axiosInstance";
 import { Service } from "@/types/service";
+import { TeamMember } from "@/types/teamMember";
 
 interface MetaData {
   page: number;
   pageSize: number;
   pageCount: number;
   total: number;
+}
+
+interface FetchServicesParams {
+  page: number;
+  limit: number;
+  searchQuery?: string;
+  locale: string;
 }
 
 export const fetchServices = createAsyncThunk(
@@ -16,13 +24,8 @@ export const fetchServices = createAsyncThunk(
     limit = 10,
     searchQuery,
     locale = "en",
-  }: {
-    page: number;
-    limit: number;
-    searchQuery?: string;
-    locale: string;
-  }) => {
-    const params: Record<string, any> = {
+  }: FetchServicesParams) => {
+    const params: Record<string, string | number> = {
       locale,
       "pagination[page]": page,
       "pagination[pageSize]": limit,
@@ -42,11 +45,11 @@ export const fetchServices = createAsyncThunk(
 
     const processedData = {
       ...data,
-      data: data.data.map((item: any) => {
+      data: data.data.map((item: Service) => {
         return {
           ...item,
-          team_members: item.team_members.map((member: any) => {
-            if (member.avatar?.url) {
+          team_members: item.team_members?.map((member) => {
+            if (typeof member.avatar !== "string" && member.avatar?.url) {
               member.avatar = strapiImageUrl + member.avatar.url;
             }
             return member;
@@ -77,10 +80,10 @@ export const fetchSingleService = createAsyncThunk(
     const strapiImageUrl =
       process.env.NEXT_PUBLIC_MAIN_URL || "http://localhost:1337";
 
-    const firstItem = {
+    const firstItem: Service = {
       ...data.data[0],
-      team_members: data.data[0].team_members.map((member: any) => {
-        if (member.avatar?.url) {
+      team_members: data.data[0].team_members.map((member: TeamMember) => {
+        if (typeof member.avatar !== "string" && member.avatar?.url) {
           member.avatar = strapiImageUrl + member.avatar.url;
         }
         return member;

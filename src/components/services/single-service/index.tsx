@@ -57,7 +57,7 @@ export default function SingleService() {
               key={member.id}
               className="flex flex-col sm:flex-row items-start gap-4 pt-4 pb-9 border-b border-[#4B261530]"
             >
-              {member.avatar && (
+              {typeof member.avatar === "string" && (
                 <Image
                   src={member.avatar}
                   alt={member.name || "avatar"}

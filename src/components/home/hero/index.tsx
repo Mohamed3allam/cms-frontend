@@ -59,9 +59,7 @@ const Hero: React.FC = () => {
       >
         {heroSlides?.map((slide) => (
           <SwiperSlide key={slide?.documentId}>
-            <div
-              className="relative w-full h-full flex items-center justify-center pb-8 pt-29"
-            >
+            <div className="relative w-full h-full flex items-center justify-center pb-8 pt-29">
               {slide?.background &&
                 (typeof slide.background === "string" &&
                 (slide.background.endsWith(".mp4") ||
@@ -79,9 +77,11 @@ const Hero: React.FC = () => {
                   <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
-                      backgroundImage: `url(${handleImageLink(
-                        slide.background
-                      )})`,
+                      backgroundImage: `url(${
+                        typeof slide.background === "string"
+                          ? handleImageLink(slide.background)
+                          : ""
+                      })`,
                     }}
                   />
                 ))}
@@ -106,14 +106,16 @@ const Hero: React.FC = () => {
 
                 <div className="hidden md:flex md:w-1/3 items-center justify-end">
                   <div className=" h-64 w-80 lg:h-80 relative rounded-xl overflow-hidden shadow-lg bg-[#4B2616]">
-                    <Image
-                      src={slide?.image}
-                      alt={slide?.title}
-                      width={420}
-                      height={420}
-                      className="object-cover w-full h-full"
-                      priority
-                    />
+                    {typeof slide?.image === "string" && (
+                      <Image
+                        src={slide?.image}
+                        alt={slide?.title}
+                        width={420}
+                        height={420}
+                        className="object-cover w-full h-full"
+                        priority
+                      />
+                    )}
                   </div>
                 </div>
               </div>

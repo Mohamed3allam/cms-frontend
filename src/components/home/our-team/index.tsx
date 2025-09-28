@@ -65,7 +65,7 @@ const OurTeamSection = () => {
                 <SwiperSlide key={member?.id}>
                   <div className="w-full flex flex-col items-center justify-center gap-3">
                     <div className=" w-full max-h-64 overflow-hidden">
-                      {member?.avatar && (
+                      {typeof member?.avatar === "string" && (
                         <Image
                           width={300}
                           height={200}

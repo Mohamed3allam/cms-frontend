@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import api from "@/lib/axiosInstance";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 
 const navLinks = [
@@ -32,8 +32,10 @@ const Footer = () => {
 
   const handleSubmit = async (
     values: { email: string },
-    { resetForm, setSubmitting, setStatus }: any
+    formikHelpers: FormikHelpers<{ email: string }>
   ) => {
+    const { resetForm, setSubmitting, setStatus } = formikHelpers;
+
     try {
       const response = await api.post("/subscribers", {
         data: { email: values.email },
@@ -45,12 +47,12 @@ const Footer = () => {
       } else {
         setStatus({ error: "Subscription failed" });
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
 
       const msg =
-        error?.response?.data?.error?.message ||
-        error?.response?.data?.message ||
+        (error as any)?.response?.data?.error?.message ||
+        (error as any)?.response?.data?.message ||
         "Subscription failed";
 
       setStatus({ error: msg });
@@ -69,7 +71,7 @@ const Footer = () => {
             onSubmit={handleSubmit}
           >
             {({ isSubmitting, status }) => (
-              <Form >
+              <Form>
                 <div className="relative flex items-center gap-4">
                   <Field
                     type="email"

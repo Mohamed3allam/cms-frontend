@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import BackIcon from "./assets/back.svg";
 import Pagination from "@/components/shared/pagination";
 import { AppDispatch, RootState } from "@/store";
@@ -10,6 +10,7 @@ import { fetchServices } from "@/store/slices/servicesSlice";
 import { fetchTeamMembers } from "@/store/slices/teamMembersSlice";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 export default function SearchPage() {
   const { t } = useTranslation();
@@ -22,7 +23,7 @@ export default function SearchPage() {
   );
 
   const router = useRouter();
-  const { locale }: any = router;
+  const { locale } = router;
   const dir = locale === "en" ? "ltr" : "rtl";
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -136,7 +137,7 @@ export default function SearchPage() {
                 key={member.id}
                 className="flex flex-col sm:flex-row items-start gap-4 pt-4 pb-9 border-b border-[#4B261530]"
               >
-                {member.avatar && (
+                {typeof member.avatar === "string" && (
                   <Image
                     src={member.avatar}
                     alt={member.name || "avatar"}

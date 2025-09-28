@@ -6,7 +6,7 @@ const defaultLocale = "en";
 const locales = ["en", "ar"];
 
 export function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+  const { pathname, locale } = req.nextUrl;
 
   if (
     pathname.startsWith("/_next") ||
@@ -21,9 +21,9 @@ export function middleware(req: NextRequest) {
   );
 
   if (!hasLocale) {
-    return NextResponse.rewrite(
-      new URL(`/${defaultLocale}${pathname}`, req.url)
-    );
+    const url = req.nextUrl.clone();
+    url.pathname = `/${locale || defaultLocale}${pathname}`;
+    return NextResponse.rewrite(url);
   }
 
   return NextResponse.next();

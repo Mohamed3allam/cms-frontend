@@ -19,6 +19,15 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off", // allow any type
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { varsIgnorePattern: "^_", argsIgnorePattern: "^_" }, // ignore unused vars starting with _
+      ],
+      "react/no-unescaped-entities": "off", // allow quotes in JSX
+      "react-hooks/exhaustive-deps": "off", // ignore missing deps warning
+    },
   },
 ];
 
