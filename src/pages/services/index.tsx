@@ -71,14 +71,14 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
         );
         return {
           props: {
-            ...(await serverSideTranslations(locale ?? "en", ["common"], {i18n})),
+            ...(await serverSideTranslations(locale ?? "en", ["common"])),
           },
         };
       } catch (error) {
         console.log(error);
         return {
           props: {
-            ...(await serverSideTranslations(locale ?? "en", ["common"], {i18n})),
+            ...(await serverSideTranslations(locale ?? "en", ["common"])),
           },
         };
       }

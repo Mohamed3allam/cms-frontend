@@ -6,9 +6,5 @@ module.exports = {
     defaultLocale: "en",
     locales: ["en", "ar"],
   },
-  reloadOnPrerender: process.env.NODE_ENV === "development",
-  localePath:
-    typeof window === "undefined"
-      ? path.resolve(process.cwd(), "public/locales")
-      : "/locales",
+  reloadOnPrerender: process.env.NODE_ENV === "development"
 };

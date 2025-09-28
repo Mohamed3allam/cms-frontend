@@ -116,9 +116,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
         await store.dispatch(fetchSettings({ locale: currentLocale }));
         return {
           props: {
-            ...(await serverSideTranslations(currentLocale, ["common"], {
-              i18n,
-            })),
+            ...(await serverSideTranslations(currentLocale, ["common"])),
           },
           revalidate: 10,
         };

@@ -43,11 +43,6 @@ const nextConfig: NextConfig = {
     ],
   },
   i18n: nextI18nextConfig.i18n,
-  unstableNetlifyFunctionsSupport: {
-    "pages/services/[slug].ts": {
-      includeDirs: ["public"],
-    },
-  },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(
       (rule: any) => rule.test && rule.test.test(".svg")
