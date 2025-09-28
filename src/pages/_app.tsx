@@ -9,8 +9,8 @@ import { wrapper } from "@/store";
 import TopBarProgress from "react-topbar-progress-indicator";
 import Loading from "@/components/shared/loading";
 import path from "path";
+import nextI18NextConfig from "@config/next-i18next.config";
 
-const nextI18NextConfig = require(path.resolve("./next-i18next.config.js"));
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
