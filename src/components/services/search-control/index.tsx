@@ -25,7 +25,6 @@ export default function SearchPage() {
   const router = useRouter();
   const { locale } = router;
   const dir = locale === "en" ? "ltr" : "rtl";
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const query = searchParams.get("query")?.toLowerCase() || "";
 
@@ -73,7 +72,6 @@ export default function SearchPage() {
       <div className="flex lg:flex-col gap-3 p-4 sm:p-6 bg-[#FAFAFA] h-fit mt-4 rounded-lg">
         <button
           onClick={() => changeTab("services")}
-          aria-selected={activeTab === "services"}
           className={`px-3 py-2 text-left text-[#4B2615] text-base sm:text-lg cursor-pointer ${
             activeTab === "services" ? "font-bold text-brown-700" : "opacity-60"
           }`}
@@ -82,7 +80,6 @@ export default function SearchPage() {
         </button>
         <button
           onClick={() => changeTab("team")}
-          aria-selected={activeTab === "team"}
           className={`px-3 py-2 text-left text-[#4B2615] text-base sm:text-lg cursor-pointer ${
             activeTab === "team" ? "font-bold text-brown-700" : "opacity-60"
           }`}

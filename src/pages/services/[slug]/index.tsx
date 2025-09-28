@@ -64,24 +64,31 @@ export default function Home() {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const locales = ["en", "ar"];
-  const response = await api.get("/services", {
-    params: {
-      locale: "en",
-      "fields[0]": "slug",
-    },
-  });
-  const paths = locales.flatMap((locale) => {
-    return response.data.data.map((service: Service) => {
-      return {
-        params: {
-          slug: service.slug,
-        },
-        locale,
-      };
+  try {
+    const response = await api.get("/services", {
+      params: {
+        locale: "en",
+        "fields[0]": "slug",
+      },
     });
-  });
+    const paths = locales.flatMap((locale) => {
+      return response.data.data.map((service: Service) => {
+        return {
+          params: {
+            slug: service.slug,
+          },
+          locale,
+        };
+      });
+    });
 
-  return { paths, fallback: "blocking" };
+    return { paths, fallback: "blocking" };
+  } catch (error) {
+    return {
+      paths: [],
+      fallback: "blocking",
+    };
+  }
 };
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(

@@ -94,6 +94,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
           revalidate: 10,
         };
       } catch (error) {
+        console.log(error);
         return {
           props: {
             ...(await serverSideTranslations(locale ?? "en", ["common"])),

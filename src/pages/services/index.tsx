@@ -51,26 +51,35 @@ export default function Home() {
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   (store) =>
-    async ({ locale, params }) => {
+    async ({ locale }) => {
       const currentLocale = locale || "en";
 
-      await store.dispatch(
-        fetchSettings({
-          locale: currentLocale,
-        })
-      );
-      await store.dispatch(
-        fetchServices({
-          page: 1,
-          limit: 10,
-          searchQuery: "",
-          locale: currentLocale,
-        })
-      );
-      return {
-        props: {
-          ...(await serverSideTranslations(locale ?? "en", ["common"])),
-        },
-      };
+      try {
+        await store.dispatch(
+          fetchSettings({
+            locale: currentLocale,
+          })
+        );
+        await store.dispatch(
+          fetchServices({
+            page: 1,
+            limit: 10,
+            searchQuery: "",
+            locale: currentLocale,
+          })
+        );
+        return {
+          props: {
+            ...(await serverSideTranslations(locale ?? "en", ["common"])),
+          },
+        };
+      } catch (error) {
+        console.log(error);
+        return {
+          props: {
+            ...(await serverSideTranslations(locale ?? "en", ["common"])),
+          },
+        };
+      }
     }
 );

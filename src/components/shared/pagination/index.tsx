@@ -26,8 +26,6 @@ export default function Pagination({
   const pathname = usePathname();
   const total = metadata.total;
 
-  const q = searchParams.get("query") || "";
-
   const pageKey = queryKeys?.pageKey || "page";
   const limitKey = queryKeys?.limitKey || "limit";
 
