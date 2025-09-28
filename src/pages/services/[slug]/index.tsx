@@ -53,8 +53,8 @@ export default function Home() {
         }}
       >
         <BreadCrumb
-          title="Services"
-          subtitle="Find the perfect service for your needs"
+          title={singleService?.title || t("services")}
+          subtitle={singleService?.description || t("servicesDesc")}
         />
         <SingleService />
       </div>

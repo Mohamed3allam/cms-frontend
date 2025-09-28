@@ -42,8 +42,8 @@ export default function Home() {
         }}
       >
         <BreadCrumb
-          title="Page Not Found"
-          subtitle="The page you are looking for does not exist"
+          title={"notFound"}
+          subtitle={"notFoundDesc"}
         />
       </div>
     </>

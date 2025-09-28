@@ -69,7 +69,7 @@ export default function Pagination({
 
         <span className="text-sm font-medium text-gray-600">
           {t("page")}{" "}
-          <span className="font-semibold text-gray-900">{page}</span> of{" "}
+          <span className="font-semibold text-gray-900">{page}</span> {t("of")}{" "}
           {totalPages || 1}
         </span>
 
