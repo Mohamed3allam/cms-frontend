@@ -86,4 +86,4 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default wrapper.withRedux(appWithTranslation(App, nextI18NextConfig));
+export default appWithTranslation(wrapper.withRedux(App), nextI18NextConfig);
