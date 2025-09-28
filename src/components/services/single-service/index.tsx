@@ -1,10 +1,8 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import BackIcon from "./assets/back.svg";
-import Pagination from "@/components/shared/pagination";
 import bgImg from "./assets/bg.png";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";

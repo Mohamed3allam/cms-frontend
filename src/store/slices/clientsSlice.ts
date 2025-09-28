@@ -11,8 +11,6 @@ export const fetchClients = createAsyncThunk(
         locale,
       },
     });
-    const strapiImageUrl =
-      process.env.NEXT_PUBLIC_MAIN_URL || "http://localhost:1337";
 
     const processedData = data.data.map((item: Client) => {
       if (typeof item.logo !== "string" && item.logo?.url) {

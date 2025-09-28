@@ -4,7 +4,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Hero from "@/components/home/hero";
 import OurTeamSection from "@/components/home/our-team";
 import OurClientsSection from "@/components/home/clients";
-import api from "@/lib/axiosInstance";
 import { RootState, wrapper } from "@/store";
 import { fetchHeroes } from "@/store/slices/heroSlice";
 import { fetchServices } from "@/store/slices/servicesSlice";

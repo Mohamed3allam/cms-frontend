@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "@/lib/axiosInstance";
 import { HeroSlide } from "@/types/hero";
-import { RootState } from "..";
 
 export const fetchHeroes = createAsyncThunk(
   "hero/fetchHeroes",

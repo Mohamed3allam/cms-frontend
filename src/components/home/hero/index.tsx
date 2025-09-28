@@ -1,21 +1,17 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, EffectFade, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import styles from "./styles/hero.module.css";
-import bgImg from "./assets/bg.jpg";
-import heroImg from "./assets/hero.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { useRouter } from "next/router";
-import { HeroSlide } from "@/types/hero";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store";
-import { fetchHeroes } from "@/store/slices/heroSlice";
 import { handleImageLink } from "@/helpers/handleImage";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 const Hero: React.FC = () => {
   const { locale } = useRouter();

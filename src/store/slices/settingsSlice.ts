@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "@/lib/axiosInstance";
-import { Client } from "@/types/client";
 import { Settings } from "@/types/settings";
 
 export const fetchSettings = createAsyncThunk(
@@ -12,9 +11,6 @@ export const fetchSettings = createAsyncThunk(
         locale,
       },
     });
-
-    const strapiImageUrl =
-      process.env.NEXT_PUBLIC_MAIN_URL || "http://localhost:1337";
 
     const processedData = {
       ...data.data[0],

@@ -38,9 +38,6 @@ export const fetchServices = createAsyncThunk(
       params["filters[$or][1][description][$contains]"] = searchQuery;
     }
 
-    const strapiImageUrl =
-      process.env.NEXT_PUBLIC_MAIN_URL || "http://localhost:1337";
-
     const { data } = await api.get("/services", { params });
 
     const processedData = {
@@ -76,9 +73,6 @@ export const fetchSingleService = createAsyncThunk(
         "filters[slug][$eq]": slug,
       },
     });
-
-    const strapiImageUrl =
-      process.env.NEXT_PUBLIC_MAIN_URL || "http://localhost:1337";
 
     const firstItem: Service = {
       ...data.data[0],

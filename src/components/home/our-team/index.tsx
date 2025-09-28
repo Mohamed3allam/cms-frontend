@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { teamMembers } from "./team";
 import WhatsappIcon from "./assets/whatsapp.svg";
 import CallIcon from "./assets/call.svg";
 import MailIcon from "./assets/mail.svg";

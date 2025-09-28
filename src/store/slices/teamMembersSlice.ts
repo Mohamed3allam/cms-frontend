@@ -36,9 +36,6 @@ export const fetchTeamMembers = createAsyncThunk(
 
     const { data } = await api.get("/team-members", { params });
 
-    const strapiImageUrl =
-      process.env.NEXT_PUBLIC_MAIN_URL || "http://localhost:1337";
-
     const processedData = {
       ...data,
       data: data.data.map((item: any) => {
