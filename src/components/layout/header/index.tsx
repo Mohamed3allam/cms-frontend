@@ -69,15 +69,17 @@ const Header = () => {
         <div className="w-full">
           <div className="sm:px-20 lg:px-10 flex justify-between items-center gap-2 w-full h-full">
             <div className="h-[60px] w-[140px] flex items-center justify-center">
-              {typeof settings?.logo === "string" && (
-                <Image
-                  priority
-                  width={140}
-                  height={60}
-                  src={settings?.logo || logoImg}
-                  alt="Logo"
-                />
-              )}
+              <Link href="/">
+                {typeof settings?.logo === "string" && (
+                  <Image
+                    priority
+                    width={140}
+                    height={60}
+                    src={settings?.logo || logoImg}
+                    alt="Logo"
+                  />
+                )}
+              </Link>
             </div>
 
             <nav className="hidden xl:flex items-center gap-8">
@@ -205,22 +207,24 @@ const Header = () => {
 
               <div className="relative w-64 bg-[#4B2616] h-full shadow-lg p-4 flex flex-col *:text-white">
                 <button
-                  className="absolute top-4 right-4 text-2xl cursor-pointer"
+                  className="absolute top-4 inset-x-10/12 text-2xl cursor-pointer"
                   onClick={() => setOpen(false)}
                 >
                   ✕
                 </button>
 
                 <div className="mb-15">
-                  {typeof settings?.logo === "string" && (
-                    <Image
-                      priority
-                      width={140}
-                      height={60}
-                      src={settings?.logo || logoImg}
-                      alt="Logo"
-                    />
-                  )}
+                  <Link href={"/"}>
+                    {typeof settings?.logo === "string" && (
+                      <Image
+                        priority
+                        width={140}
+                        height={60}
+                        src={settings?.logo || logoImg}
+                        alt="Logo"
+                      />
+                    )}
+                  </Link>
                 </div>
 
                 <nav className="flex flex-col gap-4">
