@@ -98,7 +98,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
         await store.dispatch(
           fetchServices({
             page: 1,
-            limit: 10,
+            limit: 12,
             searchQuery: "",
             locale: currentLocale,
           })
