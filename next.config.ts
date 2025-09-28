@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import nextI18NextConfig from "./next-i18next.config";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -42,7 +41,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  i18n: nextI18NextConfig.i18n,
+  // i18n: nextI18NextConfig.i18n,
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(
       (rule: any) => rule.test && rule.test.test(".svg")

@@ -14,6 +14,7 @@ import { NextSeo } from "next-seo";
 import { useSelector } from "react-redux";
 import api from "@/lib/axiosInstance";
 import { Service } from "@/types/service";
+import { i18n } from "../../../../next-i18next.config";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -113,19 +114,11 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
         );
 
         await store.dispatch(fetchSettings({ locale: currentLocale }));
-        const config = {
-          i18n: {
-            defaultLocale: "en",
-            locales: ["en", "ar"],
-          },
-        };
         return {
           props: {
-            ...(await serverSideTranslations(
-              currentLocale,
-              ["common"],
-              config
-            )),
+            ...(await serverSideTranslations(currentLocale, ["common"], {
+              i18n,
+            })),
           },
           revalidate: 10,
         };

@@ -9,6 +9,7 @@ import { fetchSettings } from "@/store/slices/settingsSlice";
 import { fetchServices } from "@/store/slices/servicesSlice";
 import { NextSeo } from "next-seo";
 import { useSelector } from "react-redux";
+import { i18n } from "../../../next-i18next.config";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -70,14 +71,14 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
         );
         return {
           props: {
-            ...(await serverSideTranslations(locale ?? "en", ["common"])),
+            ...(await serverSideTranslations(locale ?? "en", ["common"], {i18n})),
           },
         };
       } catch (error) {
         console.log(error);
         return {
           props: {
-            ...(await serverSideTranslations(locale ?? "en", ["common"])),
+            ...(await serverSideTranslations(locale ?? "en", ["common"], {i18n})),
           },
         };
       }
