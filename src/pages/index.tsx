@@ -24,10 +24,6 @@ const dmSans = DM_Sans({
 export default function Home() {
   const { settings } = useSelector((state: RootState) => state.settings);
   const { t } = useTranslation("common");
-  console.log(
-    "full state: ",
-    useSelector((state: RootState) => state)
-  );
 
   return (
     <>

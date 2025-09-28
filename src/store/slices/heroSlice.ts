@@ -13,16 +13,17 @@ export const fetchHeroes = createAsyncThunk(
         locale,
       },
     });
+    console.log("hero-data", data);
 
     const strapiImageUrl =
       process.env.NEXT_PUBLIC_MAIN_URL || "http://localhost:1337";
 
     const processedData = data.data.map((item: HeroSlide) => {
       if (typeof item.image !== "string" && item.image?.url) {
-        item.image = strapiImageUrl + item.image.url;
+        item.image = item.image.url;
       }
       if (typeof item.background !== "string" && item.background?.url) {
-        item.background = strapiImageUrl + item.background.url;
+        item.background = item.background.url;
       }
       return item;
     });

@@ -43,7 +43,7 @@ export const fetchTeamMembers = createAsyncThunk(
       ...data,
       data: data.data.map((item: any) => {
         if (item.avatar?.url) {
-          item.avatar = strapiImageUrl + item.avatar.url;
+          item.avatar = item.avatar.url;
         }
         return item;
       }),

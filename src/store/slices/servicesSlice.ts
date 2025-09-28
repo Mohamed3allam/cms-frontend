@@ -50,7 +50,7 @@ export const fetchServices = createAsyncThunk(
           ...item,
           team_members: item.team_members?.map((member) => {
             if (typeof member.avatar !== "string" && member.avatar?.url) {
-              member.avatar = strapiImageUrl + member.avatar.url;
+              member.avatar = member.avatar.url;
             }
             return member;
           }),
@@ -84,7 +84,7 @@ export const fetchSingleService = createAsyncThunk(
       ...data.data[0],
       team_members: data.data[0].team_members.map((member: TeamMember) => {
         if (typeof member.avatar !== "string" && member.avatar?.url) {
-          member.avatar = strapiImageUrl + member.avatar.url;
+          member.avatar = member.avatar.url;
         }
         return member;
       }),

@@ -18,7 +18,7 @@ export const fetchSettings = createAsyncThunk(
 
     const processedData = {
       ...data.data[0],
-      logo: strapiImageUrl + data.data[0].logo.url,
+      logo: data.data[0].logo.url,
     };
 
     return processedData;

@@ -16,7 +16,7 @@ export const fetchClients = createAsyncThunk(
 
     const processedData = data.data.map((item: Client) => {
       if (typeof item.logo !== "string" && item.logo?.url) {
-        item.logo = strapiImageUrl + item.logo.url;
+        item.logo = item.logo.url;
       }
       return item;
     });

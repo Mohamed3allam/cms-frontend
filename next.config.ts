@@ -29,13 +29,18 @@ const nextConfig: NextConfig = {
       {
         hostname: "randomuser.me",
         protocol: "https",
-        pathname: "/**", 
+        pathname: "/**",
       },
       {
         hostname: "excellent-animal-4c17327267.strapiapp.com",
         protocol: "https",
         pathname: "/**",
-      }
+      },
+      {
+        hostname: "excellent-animal-4c17327267.media.strapiapp.com",
+        protocol: "https",
+        pathname: "/**",
+      },
     ],
   },
   i18n: nextI18NextConfig.i18n,
