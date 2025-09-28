@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import nextI18NextConfig from "./next-i18next.config";
+import path from "path";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -59,6 +60,10 @@ const nextConfig: NextConfig = {
       use: ["@svgr/webpack"],
     });
 
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@config": path.resolve(__dirname),
+    };
     return config;
   },
   turbopack: {

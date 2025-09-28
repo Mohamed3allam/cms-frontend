@@ -8,7 +8,6 @@ import { appWithTranslation } from "next-i18next";
 import { wrapper } from "@/store";
 import TopBarProgress from "react-topbar-progress-indicator";
 import Loading from "@/components/shared/loading";
-import path from "path";
 import nextI18NextConfig from "@config/next-i18next.config";
 
 
