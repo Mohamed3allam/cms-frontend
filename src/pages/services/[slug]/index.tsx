@@ -66,28 +66,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const locales = ["en", "ar"];
   try {
     const response = await api.get("/services", {
-      params: {
-        locale: "en",
-        "fields[0]": "slug",
-      },
+      params: { locale: "en", "fields[0]": "slug" },
     });
-    const paths = locales.flatMap((locale) => {
-      return response.data.data.map((service: Service) => {
-        return {
-          params: {
-            slug: service.slug,
-          },
-          locale,
-        };
-      });
-    });
+
+    const paths = locales.flatMap((locale) =>
+      response.data.data.map((service: Service) => ({
+        params: { slug: service.slug },
+        locale,
+      }))
+    );
 
     return { paths, fallback: "blocking" };
   } catch (error) {
-    return {
-      paths: [],
-      fallback: "blocking",
-    };
+    console.error("getStaticPaths error:", error);
+    return { paths: [], fallback: "blocking" };
   }
 };
 
@@ -96,12 +88,10 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
     async ({ locale, params }) => {
       const currentLocale = locale || "en";
       const { slug } = params as { slug: string };
+
       try {
         await store.dispatch(
-          fetchSingleService({
-            locale: currentLocale,
-            slug,
-          })
+          fetchSingleService({ locale: currentLocale, slug })
         );
         await store.dispatch(
           fetchServices({
@@ -111,25 +101,18 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
             locale: currentLocale,
           })
         );
-        await store.dispatch(
-          fetchSettings({
-            locale: currentLocale,
-          })
-        );
+        await store.dispatch(fetchSettings({ locale: currentLocale }));
 
         return {
           props: {
-            ...(await serverSideTranslations(locale ?? "en", ["common"])),
+            ...(await serverSideTranslations(currentLocale, ["common"])),
           },
           revalidate: 10,
         };
       } catch (error) {
-        console.log(error)
+        console.error("getStaticProps error:", error);
         return {
-          props: {
-            ...(await serverSideTranslations(locale ?? "en", ["common"])),
-          },
-          revalidate: 10,
+          notFound: true,
         };
       }
     }
