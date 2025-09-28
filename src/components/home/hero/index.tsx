@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, EffectFade } from "swiper/modules";
+import { Navigation, Pagination, EffectFade, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import styles from "./styles/hero.module.css";
 import bgImg from "./assets/bg.jpg";
@@ -53,9 +53,13 @@ const Hero: React.FC = () => {
           nextEl: ".swiper-button-next-custom",
           prevEl: ".swiper-button-prev-custom",
         }}
-        modules={[Pagination, Navigation, EffectFade]}
+        modules={[Pagination, Navigation, EffectFade, Autoplay]}
         effect="fade"
         className={styles.mySwiper}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
       >
         {heroSlides?.map((slide) => (
           <SwiperSlide key={slide?.documentId}>
@@ -114,6 +118,7 @@ const Hero: React.FC = () => {
                         height={420}
                         className="object-cover w-full h-full"
                         priority
+                        unoptimized
                       />
                     )}
                   </div>
