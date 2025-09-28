@@ -92,9 +92,17 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
       const { slug } = params as { slug: string };
 
       try {
-        await store.dispatch(
+        const singleServiceResult = await store.dispatch(
           fetchSingleService({ locale: currentLocale, slug })
         );
+
+        if (
+          !singleServiceResult.payload ||
+          Object.keys(singleServiceResult.payload).length === 0
+        ) {
+          return { notFound: true };
+        }
+
         await store.dispatch(
           fetchServices({
             page: 1,
@@ -103,6 +111,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
             locale: currentLocale,
           })
         );
+
         await store.dispatch(fetchSettings({ locale: currentLocale }));
 
         return {
@@ -113,9 +122,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
         };
       } catch (error) {
         console.error("getStaticProps error:", error);
-        return {
-          notFound: true,
-        };
+        return { notFound: true };
       }
     }
 );
