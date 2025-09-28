@@ -15,15 +15,15 @@ export const fetchHeroes = createAsyncThunk(
     });
     console.log("hero-data", data);
 
-    const strapiImageUrl =
-      process.env.NEXT_PUBLIC_MAIN_URL || "http://localhost:1337";
-
     const processedData = data.data.map((item: HeroSlide) => {
-      if (typeof item.image !== "string" && item.image?.url) {
-        item.image = item.image.url;
+      if (typeof item.image !== "string" && item.image?.formats.medium.url) {
+        item.image = item.image.formats.medium.url;
       }
-      if (typeof item.background !== "string" && item.background?.url) {
-        item.background = item.background.url;
+      if (
+        typeof item.background !== "string" &&
+        item.background?.formats.medium.url
+      ) {
+        item.background = item.background.formats.medium.url;
       }
       return item;
     });
