@@ -65,8 +65,6 @@ export default function SearchPage() {
     const params = new URLSearchParams(searchParams.toString());
     if (tab === "services") params.set("servicesPage", "1");
     if (tab === "team") params.set("teamPage", "1");
-
-    router.replace(`${pathname}?${params.toString()}`);
   };
 
   return (
