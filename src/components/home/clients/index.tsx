@@ -26,7 +26,7 @@ const OurClientsSection = () => {
           {t("clientsDesc")}
         </p>
         <div className="relative w-full">
-          <div className="w-fit absolute z-50 -bottom-20 inset-x-1/2 transform -translate-x-1/2 lg:bottom-0 lg:inset-x-10/12 flex flex-row items-center justify-center gap-10">
+          <div className="w-fit absolute z-50 -bottom-20 inset-x-1/2  lg:bottom-0 lg:inset-x-9/12 flex flex-row items-center justify-center gap-10">
             <div className="swiper-button-prev-custom bg-white rounded-full p-5 cursor-pointer">
               {dir === "rtl" ? <PrevIcon /> : <NextIcon />}
             </div>
