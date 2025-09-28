@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 import nextI18NextConfig from "./next-i18next.config";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -43,7 +42,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  i18n: nextI18NextConfig.i18n,
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "ar"],
+  },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(
       (rule: any) => rule.test && rule.test.test(".svg")
