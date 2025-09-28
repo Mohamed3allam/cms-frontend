@@ -1,0 +1,27 @@
+.hero {
+    max-width: 100%;
+    position: relative;
+}
+
+.mySwiper {
+    max-width: 100%;
+    height: 100vh;
+}
+
+.overlay {
+    background: linear-gradient(271.47deg, rgba(75, 38, 21, 0.28) 1.2%, rgba(75, 38, 21, 0.68) 86.38%);
+}
+
+.customBullet {
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+    border: #fff 2px solid;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.customBulletActive {
+    opacity: 1;
+    background-color: #fff;
+}

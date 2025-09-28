@@ -1,19 +1,17 @@
 import { DM_Sans } from "next/font/google";
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Hero from "@/components/home/hero";
-import OurTeamSection from "@/components/home/our-team";
-import OurClientsSection from "@/components/home/clients";
-import api from "@/lib/axiosInstance";
-import { RootState, wrapper } from "@/store";
-import { fetchHeroes } from "@/store/slices/heroSlice";
-import { fetchServices } from "@/store/slices/servicesSlice";
-import { fetchTeamMembers } from "@/store/slices/teamMembersSlice";
-import { fetchClients } from "@/store/slices/clientsSlice";
-import { fetchSettings } from "@/store/slices/settingsSlice";
-import { useSelector } from "react-redux";
-import { NextSeo } from "next-seo";
 import { useTranslation } from "next-i18next";
+import BreadCrumb from "@/components/shared/breadcrumb";
+import SingleService from "@/components/services/single-service";
+import { RootState, wrapper } from "@/store";
+import {
+  fetchServices,
+  fetchSingleService,
+} from "@/store/slices/servicesSlice";
+import { fetchSettings } from "@/store/slices/settingsSlice";
+import { NextSeo } from "next-seo";
+import { useSelector } from "react-redux";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -23,41 +21,59 @@ const dmSans = DM_Sans({
 
 export default function Home() {
   const { settings } = useSelector((state: RootState) => state.settings);
+  const { singleService } = useSelector((state: RootState) => state.services);
   const { t } = useTranslation("common");
-
   return (
     <>
       <NextSeo
         title={
-          settings?.seoTitle
-            ? `${settings?.seoTitle} | ${t("homePage")}`
-            : t("homePage")
+          settings?.seoTitle && singleService?.title
+            ? `${singleService?.title} | ${settings?.seoTitle} `
+            : t("services")
         }
-        description={settings?.seoDescription || t("description")}
+        description={
+          singleService?.description ||
+          settings?.seoDescription ||
+          t("description")
+        }
         canonical={settings?.seoCanonical || "https://example.com"}
         openGraph={{
-          title: `${settings?.seoTitle} | ${t("homePage")}` || t("homePage"),
-          description: settings?.seoDescription || t("description"),
+          title:
+            `${singleService?.title} | ${settings?.seoTitle}` || t("homePage"),
+          description: singleService?.description || t("description"),
           url: settings?.seoCanonical || "https://example.com",
         }}
       />
-      <div className={`${dmSans.className} `}>
-        <Hero />
-        <OurTeamSection />
-        <OurClientsSection />
+      <div
+        className={`${dmSans.className} `}
+        style={{
+          minHeight: "150vh",
+        }}
+      >
+        <BreadCrumb
+          title="Services"
+          subtitle="Find the perfect service for your needs"
+        />
+        <SingleService />
       </div>
     </>
   );
 }
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  return { paths: [], fallback: "blocking" };
+};
+
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   (store) =>
-    async ({ locale }) => {
+    async ({ locale, params }) => {
       const currentLocale = locale || "en";
+      const { slug } = params as { slug: string };
       try {
         await store.dispatch(
-          fetchHeroes({
+          fetchSingleService({
             locale: currentLocale,
+            slug,
           })
         );
         await store.dispatch(
@@ -68,20 +84,6 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
             locale: currentLocale,
           })
         );
-        await store.dispatch(
-          fetchTeamMembers({
-            page: 1,
-            limit: 10,
-            searchQuery: "",
-            locale: currentLocale,
-          })
-        );
-        await store.dispatch(
-          fetchClients({
-            locale: currentLocale,
-          })
-        );
-
         await store.dispatch(
           fetchSettings({
             locale: currentLocale,
