@@ -93,16 +93,9 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
       const { slug } = params as { slug: string };
 
       try {
-        const singleServiceResult = await store.dispatch(
+        await store.dispatch(
           fetchSingleService({ locale: currentLocale, slug })
         );
-
-        if (
-          !singleServiceResult.payload ||
-          Object.keys(singleServiceResult.payload).length === 0
-        ) {
-          return { notFound: true };
-        }
 
         await store.dispatch(
           fetchServices({
