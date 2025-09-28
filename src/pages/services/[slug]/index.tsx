@@ -126,3 +126,4 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
       }
     }
 );
+
