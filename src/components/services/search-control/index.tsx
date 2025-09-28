@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useSearchParams, usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import BackIcon from "./assets/back.svg";
 import Pagination from "@/components/shared/pagination";
 import { AppDispatch, RootState } from "@/store";
