@@ -1,7 +1,7 @@
 export interface HeroSlide {
   documentId: string;
-  background: { formats: { medium: { url: string } } } | string;
-  image: { formats: { medium: { url: string } } } | string;
+  background: { url: string } | string;
+  image: { url: string } | string;
   title: string;
   subtitle: string;
   link: string;
