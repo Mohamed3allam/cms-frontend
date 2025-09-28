@@ -12,6 +12,8 @@ import {
 import { fetchSettings } from "@/store/slices/settingsSlice";
 import { NextSeo } from "next-seo";
 import { useSelector } from "react-redux";
+import api from "@/lib/axiosInstance";
+import { Service } from "@/types/service";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -62,7 +64,22 @@ export default function Home() {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const locales = ["en", "ar"];
-  const paths = locales.flatMap((locale) => [{ params: {}, locale }]);
+  const response = await api.get("/services", {
+    params: {
+      locale: "en",
+      "fields[0]": "slug",
+    },
+  });
+  const paths = locales.flatMap((locale) => {
+    return response.data.data.map((service: Service) => {
+      return {
+        params: {
+          slug: service.slug,
+        },
+        locale,
+      };
+    });
+  });
 
   return { paths, fallback: "blocking" };
 };
